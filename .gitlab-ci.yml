@@ -1,7 +1,7 @@
 stages:
   - build
 
-image: ${CI_DOCKER_REGISTRY}/llvm-build:1-6ff17268
+image: ubuntu:14.04
 
 .use_ci_tools: &use_ci_tools |
   curl -sSL ${CIT_LOADER_URL} -o cit_loader.sh && sh cit_loader.sh
