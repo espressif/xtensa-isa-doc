@@ -1,0 +1,176 @@
+\phantomsection
+
+\subsection {Instruction Fields}
+
+  \textbf{op0, op1, op2} – 4-bit opcode fields
+
+  \textbf{r, s, t} – 4-bit operand fields
+
+\subsection {Functions}
+
+
+\textbf{sign\_extend(imm)} - extend imm to 32-bit value by copy its left-most bit to all bits to the left 
+
+int \textbf{ B4const}(uint imm) \{
+	
+	const int B4constValues[16] = \{-1,1,2,3,4,5,6,7,8,10,12,16,32,64,128,256\};
+	
+	return  B4constValues[imm];
+	
+\}
+
+
+uint \textbf{B4constu}(uint imm) \{
+	
+	const int B4constuValues[16] = \{32768,65536,2,3,4,5,6,7,8,10,12,16,32,64,128,256\};
+	
+	return  B4constuValues[imm];
+	
+\}
+
+
+\subsection {Assembler expressions}
+
+\textbf{ar} – general purpose register correspondence to r operand field (AR[r])
+
+\textbf{as} – general purpose register correspondence to s operand field (AR[s])
+
+\textbf{at} – general purpose register correspondence to t operand field (AR[t])
+
+\textbf{sr} – sprecial purpose register name
+
+
+\setlength{\tabcolsep}{8pt}
+%\renewcommand{\arraystretch}{2}
+
+%RRR format
+\begin{table}[H]
+	\caption{\textbf{RRR Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+       23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{op2} & \multicolumn{4}{c|}{op1} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RRI4 format
+\begin{table}[H]
+	\caption{\textbf{RRI4 Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{op1} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{op0}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RRI8 format
+\begin{table}[H]
+	\caption{\textbf{RRI8 Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & & & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{op0}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RI16 format
+\begin{table}[H]
+	\caption{\textbf{RI16 Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & & & & & & & & & & & & & 8 & 7 & & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{16}{|c|}{imm[15..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{op0}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RSR format
+\begin{table}[H]
+	\caption{\textbf{RSR Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & 20 & 19 & & & 16 & 15 & & & & & & & 8 & 7 & & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{op1} &\multicolumn{8}{c|}{rs} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{op0}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%CALL format
+\begin{table}[H]
+	\caption{\textbf{CALL Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & & & & & & & & & & & & & & & 6 & 5 & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{18}{|c|}{offset} & \multicolumn{2}{c|}{n} & \multicolumn{4}{c|}{op0}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%CALLX format
+\begin{table}[H]
+	\caption{\textbf{CALLX Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{op2} & \multicolumn{4}{c|}{op1} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{m} & \multicolumn{2}{c|}{n} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%BRI8 format
+\begin{table}[H]
+	\caption{\textbf{BRI8 Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & & & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{m} & \multicolumn{2}{c|}{n} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%BRI12 format
+\begin{table}[H]
+	\caption{\textbf{BRI12 Instruction Format}}
+	\begin{tabular}{llllllllllllllllllllllll}
+		23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{12}{|c|}{imm[11..0]} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{m} & \multicolumn{2}{c|}{n} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RRRN format
+\begin{table}[H]
+	\caption{\textbf{RRRN Instruction Format}}
+	\begin{tabular}{llllllllllllllll}
+        15 & & & 12 & 11 & & & 8 & 7 &  & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RI7 format
+\begin{table}[H]
+	\caption{\textbf{RI7 Instruction Format}}
+	\begin{tabular}{llllllllllllllll}
+		15 & & & 12 & 11 & & & 8 & 7 & 6  & & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & i & \multicolumn{3}{|c|}{imm[6..4]} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+%RI6 format
+\begin{table}[H]
+	\caption{\textbf{RI6 Instruction Format}}
+	\begin{tabular}{llllllllllllllll}
+		15 & & & 12 & 11 & & & 8 & 7 & 6  & 5 & 4 & 3 & & & 0 \\
+		\hline
+		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & i & \multicolumn{1}{c|}{z} & \multicolumn{2}{c|}{imm[5..4]} & \multicolumn{4}{c|}{$op0$}\\
+		\hline
+	\end{tabular}
+\end{table}

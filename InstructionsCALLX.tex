@@ -1,0 +1,21 @@
+%CALLX format instructions
+%\begin{table}[]
+	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
+		\caption{Encoding\label{long}}\\
+		23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+		\hline
+		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{11} & \multicolumn{2}{c|}{00} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$CALLX0$} & $AR[0] \leftarrow next(PC)$ \newline $PC \leftarrow AR[s]$\\ \hline
+		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{10} & \multicolumn{2}{c|}{20} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$JX$} & $PC \leftarrow AR[s]$\\ \hline
+	\end{longtable}
+%\end{table}
+
+%\begin{table}[]
+	\begin{longtable}{|p{5cm}|p{5cm}|}
+		\caption{Assembler\label{long}}\\
+		\hline
+		Instruction & \\
+		\hline
+		CALLX & callx as\\ \hline
+		JX & jx as\\ \hline
+	\end{longtable}
+%\end{table}

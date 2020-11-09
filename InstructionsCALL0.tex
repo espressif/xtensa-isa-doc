@@ -1,0 +1,22 @@
+%CALL0 format instructions
+%\begin{table}[]
+	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
+		\caption{Encoding\label{long}}\\
+		23 & & & & & & & & & & & & & & & & & & 5 & 4 & 3 & & & 0 & &
+		\multicolumn{1}{c}{}\\
+		\hline
+		\multicolumn{18}{|c|}{imm[17..0]} & \multicolumn{2}{c|}{01} & \multicolumn{4}{c|}{0101} & \multicolumn{1}{c|}{$CALL0$} & $AR[0] \leftarrow next(PC)$ \newline $offset \leftarrow sign\_extend(imm)$ \newline $PC \leftarrow (PC_{31..2}+offset_{31..0}+1)_{31..2}||0^2$\\ \hline
+		\multicolumn{18}{|c|}{imm[17..0]} & \multicolumn{2}{c|}{01} & \multicolumn{4}{c|}{0110} & \multicolumn{1}{c|}{$J$} & $offset \leftarrow sign\_extend(imm)$ \newline $PC \leftarrow PC + offset + 4$\\ \hline
+	\end{longtable}
+%\end{table}
+
+%\begin{table}[]
+	\begin{longtable}{|p{5cm}|p{5cm}|}
+		\caption{Assembler\label{long}}\\
+		\hline
+		Instruction & \\
+		\hline
+		CALL0 & call0 target\\ \hline
+		J & j target\\ \hline
+	\end{longtable}
+%\end{table}
