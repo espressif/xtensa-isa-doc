@@ -3,6 +3,10 @@ stages:
 
 image: ubuntu:14.04
 
+.use_ci_tools: &use_ci_tools |
+  curl -sSL ${CIT_LOADER_URL} -o cit_loader.sh && sh cit_loader.sh
+  source citools/import_functions
+
 .add_gitlab_key: &add_gitlab_key |
   cit_add_ssh_key "${GITLAB_KEY}"
 
@@ -18,7 +22,8 @@ build_pdf_doc:
     when: always
     expire_in: 10 day
   script:
-    sudo apt install texlive-latex-extra
+    sudo apt-get -y  install curl
+    sudo apt-get -y install texlive-latex-extra
     pdflatex Xtensa.tex
     mkdir -p pdfdoc
     mv Xtensa.tex pdfdoc/
