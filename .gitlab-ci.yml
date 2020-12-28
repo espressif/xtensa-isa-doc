@@ -19,7 +19,7 @@ build_pdf_doc:
     paths:
       - pdfdoc/
     when: always
-    expire_in: 10 day
+    expire_in: 14 day
   script:
     sudo apt-get -y  install curl
     sudo apt-get -y install texlive-latex-extra
