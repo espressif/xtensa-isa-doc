@@ -16,6 +16,7 @@ before_script:
 
 build_pdf_doc:
   stage: build
+  image: $CI_DOCKER_REGISTRY/esp32-toolchain
   artifacts:
     paths:
       - pdfdoc/
