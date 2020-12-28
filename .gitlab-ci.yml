@@ -1,7 +1,7 @@
 stages:
   - build
 
-image: ${CI_DOCKER_REGISTRY}/linux-shells
+image: ${CI_DOCKER_REGISTRY}/esp32-toolchain
 
 .use_ci_tools: &use_ci_tools |
   curl -sSL ${CIT_LOADER_URL} -o cit_loader.sh && sh cit_loader.sh
