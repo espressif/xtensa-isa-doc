@@ -11,7 +11,6 @@ image: ubuntu:14.04
   cit_add_ssh_key "${GITLAB_KEY}"
 
 before_script:
-# - *use_ci_tools
   - *add_gitlab_key
 
 build_pdf_doc:
