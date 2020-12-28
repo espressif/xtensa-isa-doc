@@ -1,7 +1,7 @@
 stages:
   - build
 
-image: ${CI_DOCKER_REGISTRY}/esp32-toolchain
+image: ${CI_DOCKER_REGISTRY}/llvm-build:1-6ff17268
 
 .use_ci_tools: &use_ci_tools |
   curl -sSL ${CIT_LOADER_URL} -o cit_loader.sh && sh cit_loader.sh
@@ -9,6 +9,7 @@ image: ${CI_DOCKER_REGISTRY}/esp32-toolchain
 
 .add_gitlab_key: &add_gitlab_key |
   cit_add_ssh_key "${GITLAB_KEY}"
+
 
 before_script:
   - *use_ci_tools
