@@ -1,4 +1,4 @@
-tages:
+stages:
   - build
 
 image: ubuntu:14.04
