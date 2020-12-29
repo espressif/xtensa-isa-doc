@@ -1,31 +1,17 @@
 stages:
   - build
 
-image: ${CI_DOCKER_REGISTRY}/llvm-build:1-6ff17268
-
-.use_ci_tools: &use_ci_tools |
-  curl -sSL ${CIT_LOADER_URL} -o cit_loader.sh && sh cit_loader.sh
-  source citools/import_functions
-
-.add_gitlab_key: &add_gitlab_key |
-  cit_add_ssh_key "${GITLAB_KEY}"
-
-
-before_script:
-  - *use_ci_tools
-  - *add_gitlab_key
-
 build_pdf_doc:
+  image: ${CI_REGISTRY_IMAGE}/texlive-latex-extra:1
   stage: build
+  tags:
+    - build
+    - internet
   artifacts:
     paths:
-      - pdfdoc/
+      - pdf/
     when: always
     expire_in: 14 day
   script:
-    sudo apt-get -y install curl
-    sudo apt-get -y install texlive-latex-extra
-    pdflatex Xtensa.tex
-    mkdir -p pdfdoc
-    mv Xtensa.tex pdfdoc/
-
+    - mkdir -p pdf
+    - pdflatex -halt-on-error -interaction=nonstopmode -output-directory pdf Xtensa.tex
