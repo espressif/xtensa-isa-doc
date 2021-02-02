@@ -33,6 +33,7 @@
 %BNE
 	   \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0111} & \multicolumn{1}{c|}{$BNE$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[t] \neq AR[s])$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif\\ \hline
        \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0110} & \multicolumn{4}{c|}{0110} & \multicolumn{1}{c|}{$BNEI$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[t] \neq B4Const[r])$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif\\ \hline
+       \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0111} & \multicolumn{1}{c|}{$BNONE$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s]$ $AND$ $AR[t])$ $=$ $0^{32}$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif\\ \hline
 %L8UI
 	   \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$L8UI$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 8)$ \newline $AR[t] \leftarrow 0^{24}||mem_{7..0}$\\ \hline
 	   \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{1001} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$L16SI$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 16)$ \newline $AR[t] \leftarrow mem_{15}^{16}||mem_{15..0}$\\ \hline
@@ -73,6 +74,7 @@
 		BNALL & bnall as, at, target\\ \hline
 		BNE & bne as, at, target\\ \hline
 		BNEI & bnei as, imm, target\\ \hline
+		BNONE & bnone as, at, target\\ \hline
 		L8UI & l8ui at, as, imm\\ \hline
 		L16SI & l16si at, as, imm\\ \hline
 		L16UI & l16ui at, as, imm\\ \hline

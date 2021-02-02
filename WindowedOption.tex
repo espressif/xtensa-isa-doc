@@ -1,0 +1,109 @@
+\section*{Instructions encoded with RRR format}
+%\setlength{\tabcolsep}{4pt}
+%\renewcommand{\arraystretch}{2}
+
+\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
+	\caption{Encoding\label{long}}\\
+	23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+	\hline
+	\endhead
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$MOVSP$} & $AR[t] \leftarrow AR[s]$ \\ \hline
+	\multicolumn{4}{|c|}{0100} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{1000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{imm[3..0]} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$ROTW$} & $WINDOWBASE \leftarrow WINDOWBASE + (imm_{3}^{28}||imm_{3..0})$ \\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{0100} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RFWO$} &  Return from window overflow exception \\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{0101} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RFWU$} & Return from window underflow exception \\ \hline
+\end{longtable}
+
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	\endhead
+	MOVSP & movsp at, as\\ \hline
+	ROTW & rotw imm\\ \hline
+    RFWO & rfwo\\ \hline
+	RFWU & rfwu\\ \hline
+\end{longtable}
+
+
+\section*{Instructions encoded with CALL format}
+\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
+	\caption{Encoding\label{long}}\\
+	23 & & & & & & & & & & & & & & & & & & 5 & 4 & 3 & & & 0 & &
+	\multicolumn{1}{c}{}\\
+	\hline
+	\multicolumn{18}{|c|}{imm[17..0]} & \multicolumn{2}{c|}{01} & \multicolumn{4}{c|}{0101} & \multicolumn{1}{c|}{$CALL4$} & $PS.CALLINC \leftarrow {01}$ \newline $AR[0100] \leftarrow 01||next(PC)_{31..2}$ \newline $offset \leftarrow sign\_extend(imm)$ \newline $PC \leftarrow (PC_{31..2}+offset_{31..0}+1)_{31..2}||0^2$\\ \hline
+	\multicolumn{18}{|c|}{imm[17..0]} & \multicolumn{2}{c|}{10} & \multicolumn{4}{c|}{0101} & \multicolumn{1}{c|}{$CALL8$} &$PS.CALLINC \leftarrow {10}$ \newline $AR[1000] \leftarrow 10||next(PC)_{31..2}$ \newline $offset \leftarrow sign\_extend(imm)$ \newline $PC \leftarrow (PC_{31..2}+offset_{31..0}+1)_{31..2}||0^2$\\ \hline
+	\multicolumn{18}{|c|}{imm[17..0]} & \multicolumn{2}{c|}{11} & \multicolumn{4}{c|}{0101} & \multicolumn{1}{c|}{$CALL12$} & $PS.CALLINC \leftarrow {11}$ \newline $AR[1100] \leftarrow 11||next(PC)_{31..2}$ \newline $offset \leftarrow sign\_extend(imm)$ \newline $PC \leftarrow (PC_{31..2}+offset_{31..0}+1)_{31..2}||0^2$\\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	CALL4 & call4 target\\ \hline
+	CALL8 & call8 target\\ \hline
+	CALL12 & call12 target\\ \hline
+\end{longtable}
+
+
+\section*{Instructions encoded with CALLX format}
+\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
+	\caption{Encoding\label{long}}\\
+	23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+	\hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{11} & \multicolumn{2}{c|}{01} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$CALLX4$} & $PS.CALLINC \leftarrow {01}$ \newline $AR[0100] \leftarrow 01||next(PC)_{31..2}$ \newline $PC \leftarrow AR[s]$\\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{11} & \multicolumn{2}{c|}{10} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$CALLX8$} & $PS.CALLINC \leftarrow {10}$ \newline $AR[1000] \leftarrow 10||next(PC)_{31..2}$ \newline $PC \leftarrow AR[s]$\\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{11} & \multicolumn{2}{c|}{11} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$CALLX12$} & $PS.CALLINC \leftarrow {11}$ \newline $AR[1100] \leftarrow 11||next(PC)_{31..2}$ \newline $PC \leftarrow AR[s]$\\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{2}{c|}{10} & \multicolumn{2}{c|}{01} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RETW$} & $n \leftarrow AR[0]_{31..30}$ \newline $TMP \leftarrow PC_{31..30}||AR[0]_{29..0}$ \newline $WINDOWBASE \leftarrow WINDOWBASE - (n||0^2)$ \newline $PC \leftarrow TMP$\\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	CALLX4 & callx4 as\\ \hline
+	CALLX8 & callx8 as\\ \hline
+	CALLX12 & callx12 as\\ \hline
+	RETW & retw\\ \hline
+\end{longtable}
+
+\section*{Instructions encoded with BRI12 format}
+\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
+	\caption{Encoding\label{long}}\\
+	23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & &
+	\multicolumn{1}{c}{}\\
+	\hline
+	%BEQZ
+	\multicolumn{12}{|c|}{imm[11..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{0110} & \multicolumn{1}{c|}{$ENTRY$} & s is from [a0..a3] \newline $ci \leftarrow PS.CALLINC$ \newline $AR[ci||s_{1..0}] \leftarrow AR[s] - (0^{17}||imm||0^3)$ \newline $WINDOWBASE \leftarrow WINDOWBASE + (ci||0^2)$ \\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\		
+	\hline
+	Instruction & \\
+	\hline
+	ENTRY & entry as, imm\\ \hline
+\end{longtable}
+
+\section*{Instructions encoded with RRI4 format}
+\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
+	\caption{Encoding\label{long}}\\
+	23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & &
+	\multicolumn{1}{c}{}\\
+	\hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{1001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$L32E$} & Load operation for use in window underflow and overflow exception handlers \newline $offset \leftarrow (1^{26}||r||0^2)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 32)$ \newline $AR[t] \leftarrow mem_{31..0}$ \\ \hline
+	\multicolumn{4}{|c|}{0100} & \multicolumn{4}{c|}{1001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$S32E$} & Store operation for use in window underflow and overflow exception handlers \newline $offset \leftarrow (1^{26}||r||0^2)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $StoreMemory(vAddr, 32, AR[t]_{31..0})$ \\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\		
+	\hline
+	Instruction & \\
+	\hline
+	L32E & l32e as, at, imm\\ \hline
+	S32E & s32e as, at, imm\\ \hline
+\end{longtable}
