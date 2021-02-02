@@ -23,15 +23,15 @@
 		\multicolumn{4}{|c|}{1000} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$MOVEQZ$} & $condition \leftarrow AR[t] = 0^{32}$ \newline $if$ $condition$  $then$ \newline $AR[r] \leftarrow AR[s]$ \newline endif \\ \hline
 		\multicolumn{4}{|c|}{1011} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$MOVGEZ$} & $condition \leftarrow AR[t] >= 0^{32}$ \newline $if$ $condition$  $then$ \newline $AR[r] \leftarrow AR[s]$ \newline endif \\ \hline
 		\multicolumn{4}{|c|}{1010} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$MOVLTZ$} & $condition \leftarrow AR[t] < 0^{32}$ \newline $if$ $condition$  $then$ \newline $AR[r] \leftarrow AR[s]$ \newline endif \\ \hline
-		\multicolumn{4}{|c|}{0110} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$NEG$} & $AR[r] \leftarrow 0^{32}-AR[t]$ \\ \hline
+		\multicolumn{4}{|c|}{0110} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$NEG$} & $AR[r] \leftarrow 0^{32}-AR[t]$ \\ \hline
 		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0010} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$NOP$} &  No operation \\ \hline
         \multicolumn{4}{|c|}{0010} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$OR$} & $AR[r] \leftarrow AR[s] OR AR[t]$ \\ \hline		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0010} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RSYNC$} &  \\ \hline
         \multicolumn{4}{|c|}{1010} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SLL$} & $sh \leftarrow SAR_{5..0}$ \newline $AR[r] \leftarrow AR[s]_{31..31-sh} || 0^{sh}$ \\ \hline
         \multicolumn{4}{|c|}{000sh[4]} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{sh[3..0]} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SLLI$} & $AR[r] \leftarrow AR[s]_{31..31-sh} || 0^{sh}$ \\ \hline
         \multicolumn{4}{|c|}{1011} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRA$} & $sh \leftarrow SAR_{5..0}$ \newline $AR[r] \leftarrow AR[t]_{31}^{sh} || AR[t]_{31..sh}$ \\ \hline
-        \multicolumn{4}{|c|}{101sh[4]} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{sh[3..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRAI$} & $AR[r] \leftarrow AR[t]_{31}^{sh} || AR[t]_{31..sh}$ \\ \hline
+        \multicolumn{4}{|c|}{001sh[4]} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{sh[3..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRAI$} & $AR[r] \leftarrow AR[t]_{31}^{sh} || AR[t]_{31..sh}$ \\ \hline
         \multicolumn{4}{|c|}{1000} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRC$} & $sh \leftarrow SAR_{5..0}$ \newline $AR[r] \leftarrow AR[s]_{31-sh..sh} || AR[t]_{31..31-sh}$ \\ \hline
-        \multicolumn{4}{|c|}{0001} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRL$} & $sh \leftarrow SAR_{5..0}$ \newline $AR[r] \leftarrow 0^{sh} || AR[t]_{31..sh}$ \\ \hline        
+        \multicolumn{4}{|c|}{1001} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRL$} & $sh \leftarrow SAR_{5..0}$ \newline $AR[r] \leftarrow 0^{sh} || AR[t]_{31..sh}$ \\ \hline        
         \multicolumn{4}{|c|}{0100} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{sh} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SRLI$} & $AR[r] \leftarrow 0^{sh} || AR[t]_{31..sh}$ \\ \hline
         \multicolumn{4}{|c|}{0100} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0010} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SSA8L$} & $sh \leftarrow AR[s]_{1..0} || 0^3$ \newline $SAR \leftarrow sh$ \\ \hline
         \multicolumn{4}{|c|}{0100} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0100} & \multicolumn{4}{c|}{sh[3..0]} & \multicolumn{4}{c|}{000sh[4]} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$SSAI$} & $SAR \leftarrow 0^{27} || sh_{4..0}$ \\ \hline
@@ -68,7 +68,7 @@
 		MOVEQZ & moveqz ar, as, at\\ \hline
 		MOVGEZ & movgez ar, as, at\\ \hline
 		MOVLTZ & movltz ar, as, at\\ \hline
-		NEG & neg ar, as\\ \hline
+		NEG & neg ar, at\\ \hline
 		NOP & nop\\ \hline
 		OR & or ar, as, at\\ \hline
 		RSYNC & rsync\\ \hline
@@ -77,7 +77,7 @@
 		SRA & sra ar, at\\ \hline
 		SRAI & srai ar, at, sh\_imm\\ \hline
 		SRC & src ar, as, at\\ \hline
-		SRL & srl ar, as\\ \hline
+		SRL & srl ar, at\\ \hline
 		SRLI & srli ar, at, sh\_imm\\ \hline
 		SSA8L & ssa8l as\\ \hline
 		SSAI & ssai sh\_imm\\ \hline

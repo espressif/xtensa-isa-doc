@@ -5,7 +5,7 @@
 		23 & & & & & & & & & & & & & & & 8 & 7 & & & 4 & 3 & & & 0 & &
 		\multicolumn{1}{c}{}\\
 		\hline
-		\multicolumn{16}{|c|}{imm[15..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0001} & \multicolumn{1}{c|}{$L32R$} & $offset \leftarrow 1^{14}||imm_{15..0}||0^2$ \newline $vAddr \leftarrow ((PC + 3)_{31..2}||0^2) + offset$\\ \hline
+		\multicolumn{16}{|c|}{imm[15..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0001} & \multicolumn{1}{c|}{$L32R$} & $offset \leftarrow 1^{14}||imm_{15..0}||0^2$ \newline $vAddr \leftarrow ((PC + 3)_{31..2}||0^2) + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 32)$ \newline $AR[t] \leftarrow mem_{31..0}$\\ \hline
 	\end{longtable}
 %\end{table}
 
