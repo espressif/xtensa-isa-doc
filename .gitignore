@@ -3,3 +3,8 @@
 *.out
 *.pdf
 pdf/
+*.bbl
+*.blg
+*.fls
+*.fdb*
+*.gz
