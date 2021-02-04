@@ -8,3 +8,5 @@ pdf/
 *.fls
 *.fdb*
 *.gz
+*.toc
+revision.tex

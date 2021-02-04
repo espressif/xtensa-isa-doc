@@ -2,7 +2,21 @@
 
 \input{preamble}
 
+% Include git revision info (created .gitlab-ci.yml)
+\IfFileExists{revision.tex}{
+    \input{revision}
+}{
+    \newcommand{\gitinfo}{\today}
+}
+
+\title{Overview of Xtensa ISA}
+\date{\gitinfo}
+\author{Espressif Systems}
+
 \begin{document}
+
+\maketitle
+\tableofcontents
 
 \input{Intro}
 \input{InstructionFormats}
