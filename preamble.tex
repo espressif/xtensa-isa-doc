@@ -1,6 +1,7 @@
 % Package includes
 
 \usepackage{caption}
+\usepackage{changepage}
 \usepackage[style=iso]{datetime2}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -11,8 +12,26 @@
 \usepackage{textcomp}
 \usepackage[svgnames]{xcolor}
 
+\setlength{\parskip}{0.5\baselineskip}
+
 % include this to debug page layout:
 % \usepackage{showframe}
 
 \captionsetup[table]{labelformat=empty}
 \graphicspath{ {./images/} }
+
+% commands to format instruction and register names
+\newcommand{\insn}[1]{\texttt{#1}}
+\newcommand{\reg}[1]{\texttt{#1}}
+\newcommand{\an}{\texttt{a\textit{n}}}
+
+% some formatting helpers
+\newcommand{\fixme}[1]{\textcolor{purple}{\textit{FIXME: #1}}}
+\newcommand{\note}[1]{
+    \begin{adjustwidth}{3cm}{}
+    \begin{flushright}
+    \textit{#1}
+    \end{flushright}
+    \vspace{\parskip}
+    \end{adjustwidth}
+}
