@@ -1,0 +1,24 @@
+\chapter{Special Register Numbers}
+\begin{table}[htbp]
+    \caption{Special register numbers \cite{specreg}}
+    \begin{tabular}{lll}
+        \hline
+        Register name & Register number & Comment \\
+        \hline
+        LBEG & 0 & Zero-overhead loop begin \\
+        LEND & 1 &  Zero-overhead loop end \\
+        LCOUNT & 2 &  Zero-overhead loop counter \\
+        SAR & 3 & Shift amount register \\
+        SCOMPARE1 & 12 & Comparison value for conditional store instruction \\
+        WINDOWBASE & 72 & Mask of dirty register windows \\
+        WINDOWSTART & 73 & Offset of the current register window \\
+        PS & 230 & Processor state \\
+        VECBASE & 231 & Exception vector base address \\
+        CCOUNT & 234 & CPU cycle counter \\
+        CCOMPARE\_0 & 240 & Match value for CPU cycle counter \\
+        MISC\_REG\_0 & 244 & Miscellaneous register (no special meaning)\\
+        MISC\_REG\_1 & 245 & Miscellaneous register (no special meaning)\\
+        THREADPTR & 231 & Thread pointer \\
+        \hline
+    \end{tabular}
+\end{table}
