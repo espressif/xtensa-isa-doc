@@ -2,7 +2,7 @@ stages:
   - build
 
 build_pdf_doc:
-  image: ${CI_REGISTRY_IMAGE}/texlive-latex-extra:1
+  image: ${CI_REGISTRY_IMAGE}/texlive-latex-extra:2
   stage: build
   tags:
     - build
