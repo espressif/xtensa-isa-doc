@@ -125,7 +125,27 @@ Stack layout is always better explained through an illustration \ref{fig:window-
 
 \begin{figure}[p]
     \center
-    \includegraphics[width=0.9\textwidth]{Stack_layout.png}
+    \begin{drawstack}
+        \startframe
+        \cell{Extra save area ($i-1$)}
+        \cell{Locals ($i-1$)}
+        \cell{Outgoing arguments}
+        \cellptrdiv{\reg{SP}$_{i-1}$}
+        \cell{Base save area ($i-2$)}
+        \finishframe{Stack frame $i-1$ (previous)}
+        \startframe
+        \padding{0}{}
+        \cell{Extra save area ($i$)}
+        \cell{Locals ($i$)}
+        \cell{Outgoing arguments}
+        \cellptrdiv{\reg{SP}$_{i}$}
+        \cell{Base save area ($i-1$)}
+        \finishframe{Stack frame $i$ (current)}
+        \draw[<-,line width=0.7pt] +(3,0) -- +(3,-1);
+        \draw (3.1,-0.5) node[anchor=west] {Higher address};
+        \draw[<-,line width=0.7pt] +(3,-9) -- +(3,-8);
+        \draw (3.1,-8.5) node[anchor=west] {Stack growth};
+    \end{drawstack}
     \caption{Windowed ABI stack layout}
     \label{fig:window-abi-stack-layout}
 \end{figure}

@@ -11,6 +11,7 @@
 \usepackage{longtable}
 \usepackage{textcomp}
 \usepackage[svgnames]{xcolor}
+\usepackage[nocolor]{drawstack}
 
 \setlength{\parskip}{0.5\baselineskip}
 
@@ -34,4 +35,14 @@
     \end{flushright}
     \vspace{\parskip}
     \end{adjustwidth}
+}
+
+% Similar to \cellpt command from drawstack package, but points
+% to the next divider between cells. See drawstack.sty for the
+% definition of \cellptr. This differs only in "\value{cellnb}-0.5"
+% instead of "\value{cellnb}-1".
+\newcommand{\cellptrdiv}[1]{
+  \draw[<-,line width=0.7pt] (0,\value{cellnb}-0.5) +(2,\value{ptrnb}*0.1) -- +(2.5,\value{ptrnb}*0.45);
+  \draw (2.5,\value{ptrnb}*0.5+\value{cellnb}-0.5) node[anchor=west] {#1};
+  \addtocounter{ptrnb}{1}
 }
