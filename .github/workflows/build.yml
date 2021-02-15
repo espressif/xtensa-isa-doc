@@ -1,0 +1,22 @@
+name: 'build'
+
+on: [push, pull_request]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v1
+      - name: Build PDF
+        uses: ./docker
+        with:
+          entrypoint: ./build.sh
+      - name: Update release
+        if: "github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')"
+        uses: eine/tip@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            pdf/Xtensa.pdf
+          tag: latest
+          rm: true

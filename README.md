@@ -1,4 +1,5 @@
 # Xtensa ISA documentation
+[![Latest PDF](https://img.shields.io/badge/PDF-latest-green)](https://github.com/espressif/xtensa-isa-doc/releases/download/latest/Xtensa.pdf)
 
 ## About this repository
 
@@ -22,6 +23,11 @@ This repository is not an official reference of Xtensa documentation and is not 
 ## Getting the documentation
 
 This repository contains the source of Xtensa ISA documentation in LaTeX format.
+
+### Latest version
+
+You can download the document in PDF format here:
+* [Xtensa.pdf](https://github.com/espressif/xtensa-isa-doc/releases/download/latest/Xtensa.pdf) (latest) — automatically built from source whenever the default branch of the repository is updated.
 
 ### Building from source
 
