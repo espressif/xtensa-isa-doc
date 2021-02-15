@@ -2,14 +2,14 @@ stages:
   - build
 
 build_pdf_doc:
-  image: ${CI_REGISTRY_IMAGE}/texlive-latex-extra:2
+  image: ${CI_REGISTRY_IMAGE}/texlive-latex-extra:3
   stage: build
   tags:
     - build
     - internet
   artifacts:
     paths:
-      - pdf/
+      - Xtensa.pdf
     when: always
     expire_in: 14 day
   script:

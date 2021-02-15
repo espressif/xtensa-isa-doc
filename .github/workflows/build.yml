@@ -17,6 +17,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            pdf/Xtensa.pdf
+            Xtensa.pdf
           tag: latest
           rm: true

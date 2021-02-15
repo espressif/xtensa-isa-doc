@@ -9,9 +9,10 @@
 
 set -euo pipefail
 
-mkdir -p pdf
 echo "\\newcommand{\\gitinfo}{Version $(git describe --always), $(git log -1 --pretty=format:%ad --date=short)}" > revision.tex
-# run latex twice to generate and use the .aux file
-for i in 1 2; do
-    pdflatex -halt-on-error -interaction=nonstopmode -output-directory pdf Xtensa.tex
-done
+
+pdflatex_cmd="pdflatex -halt-on-error -interaction=nonstopmode Xtensa.tex"
+${pdflatex_cmd}
+bibtex Xtensa.aux
+${pdflatex_cmd}
+${pdflatex_cmd}

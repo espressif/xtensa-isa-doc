@@ -14,5 +14,6 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         texlive-latex-extra \
         texlive-plain-generic \
         texlive-science \
+        texlive-bibtex-extra \
   && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/*
