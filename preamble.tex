@@ -15,6 +15,11 @@
 
 \setlength{\parskip}{0.5\baselineskip}
 
+\newlength{\deftabcolsep}
+\setlength\deftabcolsep{\tabcolsep}
+
+\newenvironment{compacttables}{\setlength\tabcolsep{2pt}}{\setlength\tabcolsep{\deftabcolsep}}
+
 % include this to debug page layout:
 % \usepackage{showframe}
 
