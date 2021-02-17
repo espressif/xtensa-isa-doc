@@ -1,5 +1,5 @@
 \section{Instructions encoded with BRI12 format}
-%\begin{table}[H]
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & &
@@ -11,9 +11,7 @@
 		\multicolumn{12}{|c|}{imm[11..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{1001} & \multicolumn{4}{c|}{0110} & \multicolumn{1}{c|}{$BLTZ$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] < 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif\\ \hline
 		\multicolumn{12}{|c|}{imm[11..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0101} & \multicolumn{4}{c|}{0110} & \multicolumn{1}{c|}{$BNEZ$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] \neq 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif\\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{table}[H]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\		
 		\hline
@@ -24,4 +22,4 @@
 		BLTZ & bltz as, imm\\ \hline
 		BNEZ & bnez as, imm\\ \hline
 	\end{longtable}
-%\end{table}
+\end{smalltables}

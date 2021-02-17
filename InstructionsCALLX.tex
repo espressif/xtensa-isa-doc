@@ -1,5 +1,5 @@
 \section{Instructions encoded with CALLX format}
-%\begin{table}[]
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -8,9 +8,7 @@
 		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{2}{c|}{10} & \multicolumn{2}{c|}{10} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$JX$} & $PC \leftarrow AR[s]$\\ \hline
 		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{2}{c|}{10} & \multicolumn{2}{c|}{00} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RET$} & $PC \leftarrow AR[0]$\\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{table}[]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\
 		\hline
@@ -20,4 +18,4 @@
 		JX & jx as\\ \hline
 		RET & ret \\ \hline
 	\end{longtable}
-%\end{table}
+\end{smalltables}

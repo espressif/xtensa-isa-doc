@@ -1,40 +1,75 @@
 \section{Code Density Option}
-
+\subsection{Instructions encoded with RRRN format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllll  p{1cm}  p{7cm} | }
-		\caption{Encoding\label{long}}\\
-		15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
-		\hline
-        \endhead
-		\multicolumn{4}{|c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1010} & \multicolumn{1}{c|}{$ADD.N$} & $AR[r] \leftarrow AR[t] + AR[s]$ \\ \hline
-		\multicolumn{4}{|c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{imm[3..0]} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$ADDI.N$} & $if (imm = 0) then$ \newline $AR[r] \leftarrow 1^{32}$ \newline else \newline $AR[r] \leftarrow AR[s] + imm$ \newline endif \\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{10imm[5..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$BEQZ.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] = 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif \\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{10imm[5..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$BEQZ.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] = 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif \\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{11imm[5..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$BNEZ.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] >= 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif \\ \hline
-		\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0110} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$ILL.N$} & Illegal instruction\\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1000} & \multicolumn{1}{c|}{$L32I.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 32)$ \newline $AR[t] \leftarrow mem_{31..0}$\\ \hline
-		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$MOV.N$} &  $AR[s] \leftarrow AR[t]$ \\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0imm[6..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$MOVI.N$} &  $AR[s] \leftarrow sign\_extend(imm)$ \\ \hline
-		\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$NOP.N$} & No operation \\ \hline
-		\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$RET.N$} & $PC \leftarrow AR[0]$ \\ \hline
-		\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$RETW.N$} &  $n \leftarrow AR[0]_{31..30}$ \newline $TMP \leftarrow PC_{31..30}||AR[0]_{29..0}$ \newline $WINDOWBASE \leftarrow WINDOWBASE - (n||0^2)$ \newline $PC \leftarrow TMP$ \\ \hline
-		\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1001} & \multicolumn{1}{c|}{$S32I.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $StoreMemory(vAddr, 32, AR[t]_{31..0})$\\ \hline
+	\caption{Encoding\label{long}}\\
+	15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+	\hline
+	\endhead
+	\multicolumn{4}{|c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1010} & \multicolumn{1}{c|}{$ADD.N$} & $AR[r] \leftarrow AR[t] + AR[s]$ \\ \hline
+	\multicolumn{4}{|c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{imm[3..0]} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$ADDI.N$} & $if (imm = 0) then$ \newline $AR[r] \leftarrow 1^{32}$ \newline else \newline $AR[r] \leftarrow AR[s] + imm$ \newline endif \\ \hline
+	\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0110} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$ILL.N$} & Illegal instruction\\ \hline
+	\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1000} & \multicolumn{1}{c|}{$L32I.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 32)$ \newline $AR[t] \leftarrow mem_{31..0}$\\ \hline
+	\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$MOV.N$} &  $AR[s] \leftarrow AR[t]$ \\ \hline
+	\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0011} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$NOP.N$} & No operation \\ \hline
+	\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$RET.N$} & $PC \leftarrow AR[0]$ \\ \hline
+	\multicolumn{4}{|c|}{1111} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{0001} & \multicolumn{4}{c|}{1101} & \multicolumn{1}{c|}{$RETW.N$} &  $n \leftarrow AR[0]_{31..30}$ \newline $TMP \leftarrow PC_{31..30}||AR[0]_{29..0}$ \newline $WINDOWBASE \leftarrow WINDOWBASE - (n||0^2)$ \newline $PC \leftarrow TMP$ \\ \hline
+	\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{1001} & \multicolumn{1}{c|}{$S32I.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $StoreMemory(vAddr, 32, AR[t]_{31..0})$\\ \hline
 \end{longtable}
 
 \begin{longtable}{|p{5cm}|p{5cm}|}
-\caption{Assembler\label{long}}\\
-\hline
-Instruction & \\
-\hline
-ADD.N & addi ar, as, at\\ \hline
-ADDI & add ar, as, imm\\ \hline
-BEQZ.N & beqz.n as, target\\ \hline
-BNEZ.N & bneqz.n as, target\\ \hline
-ILL.N & ill.n\\ \hline
-L32I.N & l32i.n at, as, imm\\ \hline
-MOV.N & mov.n at, as\\ \hline
-MOVI.N & movi.n as, imm\\ \hline
-NOP.N & nop.n\\ \hline
-RET.N & ret.n\\ \hline
-RETW.N & retw.n\\ \hline
-S32I.N & s32i.n at, as, imm\\ \hline
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	ADD.N & add.n ar, as, at\\ \hline
+	ADDI.N & addi.n ar, as, imm\\ \hline
+	ILL.N & ill.n\\ \hline
+	L32I.N & l32i.n at, as, imm\\ \hline
+	MOV.N & mov.n at, as\\ \hline
+	NOP.N & nop.n\\ \hline
+	RET.N & ret.n\\ \hline
+	RETW.N & retw.n\\ \hline
+	S32I.N & s32i.n at, as, imm\\ \hline
 \end{longtable}
+\end{smalltables}
+
+\subsection{Instructions encoded with RI6 format}
+\begin{smalltables}
+\begin{longtable}{llllllllllllllll  p{1cm}  p{7cm} | }
+	\caption{Encoding\label{long}}\\
+	15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+	\hline
+	\endhead
+	\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{10imm[5..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$BEQZ.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] = 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif \\ \hline
+	\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{11imm[5..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$BNEZ.N$} & $offset \leftarrow sign\_extend(imm)$ \newline $condition \leftarrow (AR[s] >= 0^{32})$ \newline if condition then \newline $PC \leftarrow PC + offset + 4$ \newline endif \\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	BEQZ.N & beqz.n as, target\\ \hline
+	BNEZ.N & bnez.n as, target\\ \hline
+\end{longtable}
+\end{smalltables}
+
+\subsection{Instructions encoded with RI7 format}
+\begin{smalltables}
+\begin{longtable}{llllllllllllllll  p{1cm}  p{7cm} | }
+	\caption{Encoding\label{long}}\\
+	15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
+	\hline
+	\endhead
+	\multicolumn{4}{|c|}{imm[3..0]} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{0imm[6..4]} & \multicolumn{4}{c|}{1100} & \multicolumn{1}{c|}{$MOVI.N$} &  $AR[s] \leftarrow sign\_extend(imm)$ \\ \hline
+\end{longtable}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\caption{Assembler\label{long}}\\
+	\hline
+	Instruction & \\
+	\hline
+	MOVI.N & movi.n as, imm\\ \hline
+\end{longtable}
+\end{smalltables}

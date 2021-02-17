@@ -1,5 +1,6 @@
 \section{Windowed Option}
 \subsection{Instructions encoded with RRR format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
 	\caption{Encoding\label{long}}\\
 	23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -23,10 +24,10 @@
     RFWO & rfwo\\ \hline
 	RFWU & rfwu\\ \hline
 \end{longtable}
-
-\newpage
+\end{smalltables}
 
 \subsection{Instructions encoded with CALL format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 	\caption{Encoding\label{long}}\\
 	23 & & & & & & & & & & & & & & & & & & 5 & 4 & 3 & & & 0 & &
@@ -46,10 +47,10 @@
 	CALL8 & call8 target\\ \hline
 	CALL12 & call12 target\\ \hline
 \end{longtable}
-
-\newpage
+\end{smalltables}
 
 \subsection{Instructions encoded with CALLX format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
 	\caption{Encoding\label{long}}\\
 	23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & 6 & 5 & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -70,10 +71,10 @@
 	CALLX12 & callx12 as\\ \hline
 	RETW & retw\\ \hline
 \end{longtable}
-
-\newpage
+\end{smalltables}
 
 \subsection{Instructions encoded with BRI12 format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 	\caption{Encoding\label{long}}\\
 	23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & &
@@ -90,8 +91,10 @@
 	\hline
 	ENTRY & entry as, imm\\ \hline
 \end{longtable}
+\end{smalltables}
 
 \subsection{Instructions encoded with RRI4 format}
+\begin{smalltables}
 \begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 	\caption{Encoding\label{long}}\\
 	23 & & & & & & & & & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & &
@@ -109,3 +112,4 @@
 	L32E & l32e as, at, imm\\ \hline
 	S32E & s32e as, at, imm\\ \hline
 \end{longtable}
+\end{smalltables}

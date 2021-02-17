@@ -1,5 +1,5 @@
 \section{Instructions encoded with RSR format}
-%\begin{table}[]
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & 20 & 19 & & & 16 & 15 & & & & & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -7,9 +7,7 @@
 		\multicolumn{4}{|c|}{0000} & \multicolumn{4}{c|}{0011} & \multicolumn{8}{c|}{sr} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$RSR$} & $AR[t] \leftarrow SR[sr]$ \\ \hline
 		\multicolumn{4}{|c|}{0001} & \multicolumn{4}{c|}{0011} & \multicolumn{8}{c|}{sr} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$WSR$} & $SR[sr] \leftarrow AR[t]$ \\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{table}[]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\
 		\hline
@@ -18,4 +16,4 @@
 		RSR & rsr at, sr\\ \hline
 		WSR & wsr at, sr\\ \hline
 	\end{longtable}
-%\end{table}
+\end{smalltables}

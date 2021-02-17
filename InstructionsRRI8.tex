@@ -1,6 +1,5 @@
 \section{Instructions encoded with RRI8 format}
-%\begin{table}[H]
-%	\caption{\textbf{Instructions using RRI8 Format}}
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & & & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -42,9 +41,7 @@
        \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{0101} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$S16I$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $StoreMemory(vAddr, 16, AR[t]_{15..0})$\\ \hline
        \multicolumn{8}{|c|}{imm[7..0]} & \multicolumn{4}{c|}{0110} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0010} & \multicolumn{1}{c|}{$S32I$} & $offset \leftarrow sign\_extend(imm)$ \newline $vAddr \leftarrow AR[s] + offset$ \newline $StoreMemory(vAddr, 32, AR[t]_{31..0})$\\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{table}[]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\
 		\hline
@@ -81,4 +78,4 @@
 		S16I & s16i at, as, imm\\ \hline
 		S32I & s32i at, as, imm\\ \hline
 	\end{longtable}
-%\end{table}
+\end{smalltables}

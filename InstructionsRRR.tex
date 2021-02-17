@@ -1,5 +1,5 @@
 \section{Instructions encoded with RRR format}
-%\begin{table}[H]
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{6cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & 20 & 19 & & & 16 & 15 & & & 12 & 11 & & & 8 & 7 & & & 4 & 3 & & & 0 & & \multicolumn{1}{c}{}\\
@@ -41,9 +41,7 @@
 		\multicolumn{4}{|c|}{0011} & \multicolumn{4}{c|}{0000} & \multicolumn{4}{c|}{r} & \multicolumn{4}{c|}{s} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$XOR$} & $AR[r] \leftarrow AR[s] XOR AR[t]$ \\ \hline
 		\multicolumn{4}{|c|}{0110} & \multicolumn{4}{c|}{0001} & \multicolumn{8}{c|}{sr} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0000} & \multicolumn{1}{c|}{$XSR$} & $tmp \leftarrow AR[t]$ \newline $AR[t] \leftarrow SR[sr]$ \newline $SR[sr] \leftarrow tmp$ \\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{longtable}[H]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\
 		\hline
@@ -85,4 +83,4 @@
         SUBX4 & subx4 ar, as, at\\ \hline
         SUBX8 & subx8 ar, as, at\\ \hline
 	\end{longtable}
-% \end{longtable}
+\end{smalltables}

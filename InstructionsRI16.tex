@@ -1,5 +1,5 @@
 \section{Instructions encoded with RI16 format}
-%\begin{table}[]
+\begin{smalltables}
 	\begin{longtable}{llllllllllllllllllllllll  p{1cm}  p{7cm} | }
 		\caption{Encoding\label{long}}\\
 		23 & & & & & & & & & & & & & & & 8 & 7 & & & 4 & 3 & & & 0 & &
@@ -7,9 +7,7 @@
 		\hline
 		\multicolumn{16}{|c|}{imm[15..0]} & \multicolumn{4}{c|}{t} & \multicolumn{4}{c|}{0001} & \multicolumn{1}{c|}{$L32R$} & $offset \leftarrow 1^{14}||imm_{15..0}||0^2$ \newline $vAddr \leftarrow ((PC + 3)_{31..2}||0^2) + offset$ \newline $mem \leftarrow LoadMemory(vAddr, 32)$ \newline $AR[t] \leftarrow mem_{31..0}$\\ \hline
 	\end{longtable}
-%\end{table}
 
-%\begin{table}[]
 	\begin{longtable}{|p{5cm}|p{5cm}|}
 		\caption{Assembler\label{long}}\\
 		\hline
@@ -17,4 +15,4 @@
 		\hline
 		L32R & l32r at, target\\ \hline
 	\end{longtable}
-%\end{table}
+\end{smalltables}
